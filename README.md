@@ -25,7 +25,7 @@
 在仓库根目录执行（首次需安装根目录依赖以使用 `concurrently`）：
 
 ```bash
-cd Nexo
+cd 根目录
 npm install --cache ./.npm-cache
 npm run dev
 ```
