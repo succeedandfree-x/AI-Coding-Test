@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="320" viewBox="0 0 400 320" role="img" aria-label="长城">
+  <defs>
+    <linearGradient id="bj" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f7e8c4"/>
+      <stop offset="35%" stop-color="#d4a84b"/>
+      <stop offset="100%" stop-color="#1e5a8e"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="320" fill="url(#bj)"/>
+  <g fill="#0d3d5c" opacity="0.88">
+    <path d="M0 200 L60 175 L120 195 L180 165 L240 185 L300 155 L360 175 L400 160 L400 320 L0 320 Z"/>
+  </g>
+  <g fill="none" stroke="#c49a3a" stroke-width="4" stroke-linecap="round" opacity="0.9">
+    <path d="M20 208 L80 182 L140 202 L200 172 L260 192 L320 162 L380 182"/>
+  </g>
+  <g fill="#5a4632" opacity="0.5">
+    <rect x="0" y="215" width="400" height="105"/>
+  </g>
+  <rect y="250" width="400" height="70" fill="#1e5a8e" opacity="0.15"/>
+</svg>

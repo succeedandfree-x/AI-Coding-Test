@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="320" viewBox="0 0 400 320" role="img" aria-label="上海天际线">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2d6fa3"/>
+      <stop offset="55%" stop-color="#4a8ab8"/>
+      <stop offset="100%" stop-color="#f4d78c"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e5a8e" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1e5a8e" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="320" fill="url(#sky)"/>
+  <rect y="220" width="400" height="100" fill="url(#water)"/>
+  <g fill="#0d3d5c" opacity="0.88">
+    <rect x="28" y="168" width="22" height="92" rx="2"/>
+    <rect x="58" y="142" width="28" height="118" rx="2"/>
+    <rect x="98" y="156" width="20" height="104" rx="2"/>
+    <rect x="128" y="118" width="36" height="142" rx="2"/>
+    <rect x="176" y="132" width="26" height="128" rx="2"/>
+    <rect x="214" y="98" width="32" height="162" rx="2"/>
+    <rect x="258" y="124" width="24" height="136" rx="2"/>
+    <rect x="294" y="108" width="30" height="152" rx="2"/>
+    <rect x="336" y="148" width="36" height="112" rx="2"/>
+  </g>
+  <circle cx="320" cy="64" r="28" fill="#ffe9a8" opacity="0.9"/>
+</svg>

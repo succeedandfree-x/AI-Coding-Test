@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="320" viewBox="0 0 400 320" role="img" aria-label="成都古韵">
+  <defs>
+    <linearGradient id="cd" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c9e4f0"/>
+      <stop offset="45%" stop-color="#3d7a8c"/>
+      <stop offset="100%" stop-color="#f0d78a"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="320" fill="url(#cd)"/>
+  <g fill="#1e5a8e" opacity="0.35">
+    <ellipse cx="100" cy="255" rx="120" ry="28"/>
+    <ellipse cx="300" cy="265" rx="140" ry="32"/>
+  </g>
+  <g stroke="#8b6914" stroke-width="3" fill="none" opacity="0.55">
+    <path d="M120 220 Q200 175 280 220"/>
+    <path d="M130 228 Q200 188 270 228"/>
+  </g>
+  <g fill="#2a1810" opacity="0.82">
+    <path d="M88 200 L112 200 L118 248 L82 248 Z"/>
+    <path d="M140 188 L200 188 L208 252 L132 252 Z"/>
+    <path d="M220 196 L268 196 L276 250 L212 250 Z"/>
+    <path d="M288 204 L332 204 L338 246 L282 246 Z"/>
+  </g>
+  <g fill="#f4c14b" opacity="0.9">
+    <circle cx="200" cy="120" r="6"/>
+    <circle cx="184" cy="128" r="4"/>
+    <circle cx="216" cy="128" r="4"/>
+  </g>
+</svg>
