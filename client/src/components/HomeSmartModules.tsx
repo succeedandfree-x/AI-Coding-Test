@@ -2,6 +2,23 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';
 
+/** SVG icons for smart modules */
+function TrendIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    </svg>
+  );
+}
+
+function BellIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 01-3.46 0" />
+    </svg>
+  );
+}
+
 /** 与演示库航班数据对齐的航程（便于价格样本命中） */
 const TREND_ROUTE_PRESETS = [
   { id: 'pek-sha', depCity: '北京', arrCity: '上海', depDate: '2026-04-15', label: '北京 → 上海' },
@@ -18,9 +35,11 @@ function buildTrendSeries(referenceMin: number, referenceAvg: number): number[] 
 }
 
 function TrendLineChart({ values }: { values: number[] }) {
-  const { lineD, areaD, minV, maxV, dots } = useMemo(() => {
+  const [tooltip, setTooltip] = useState<{ x: number; y: number; value: number; label: string } | null>(null);
+
+  const { lineD, areaD, minV, maxV, dots, labels } = useMemo(() => {
     if (values.length < 2) {
-      return { lineD: '', areaD: '', minV: 0, maxV: 1, dots: [] as { cx: number; cy: number }[] };
+      return { lineD: '', areaD: '', minV: 0, maxV: 1, dots: [] as { x: number; y: number }[], labels: [] as string[] };
     }
     const min = Math.min(...values);
     const max = Math.max(...values);
@@ -37,10 +56,42 @@ function TrendLineChart({ values }: { values: number[] }) {
       const y = bottom - ((v - lo) / span) * (bottom - top);
       return { x, y };
     });
-    const lineD = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join(' ');
-    const areaD = `${lineD} L ${w} ${bottom} L 0 ${bottom} Z`;
-    return { lineD, areaD, minV: min, maxV: max, dots: pts };
+
+    const smoothD = pts.reduce((acc, p, i) => {
+      if (i === 0) return `M ${p.x.toFixed(2)} ${p.y.toFixed(2)}`;
+      const prev = pts[i - 1];
+      const cpx1x = prev.x + (p.x - prev.x) * 0.5;
+      const cpx1y = prev.y;
+      const cpx2x = prev.x + (p.x - prev.x) * 0.5;
+      const cpx2y = p.y;
+      return `${acc} C ${cpx1x.toFixed(2)} ${cpx1y.toFixed(2)} ${cpx2x.toFixed(2)} ${cpx2y.toFixed(2)} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`;
+    }, '');
+
+    const areaD = `${smoothD} L ${w} ${bottom} L 0 ${bottom} Z`;
+    const lbls = ['较早', '', '', '', '', '', '近日'];
+    return { lineD: smoothD, areaD, minV: min, maxV: max, dots: pts, labels: lbls };
   }, [values]);
+
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
+    if (dots.length < 2) return;
+    const svg = e.currentTarget;
+    const rect = svg.getBoundingClientRect();
+    const svgX = ((e.clientX - rect.left) / rect.width) * 100;
+    let closest = dots[0];
+    let minDist = Math.abs(svgX - closest.x);
+    for (const d of dots) {
+      const dist = Math.abs(svgX - d.x);
+      if (dist < minDist) {
+        minDist = dist;
+        closest = d;
+      }
+    }
+    const idx = dots.indexOf(closest);
+    const labelText = labels[idx] || `第${idx + 1}天`;
+    setTooltip({ x: closest.x, y: closest.y, value: values[idx], label: labelText });
+  };
+
+  const handleMouseLeave = () => setTooltip(null);
 
   if (!lineD) {
     return (
@@ -52,20 +103,49 @@ function TrendLineChart({ values }: { values: number[] }) {
 
   return (
     <div className="flyvio-trend-chart" role="img" aria-label={`近段价格约 ¥${minV}–¥${maxV} 走势示意`}>
-      <svg className="flyvio-trend-chart__svg" viewBox="0 0 100 36" preserveAspectRatio="none">
+      <svg
+        className="flyvio-trend-chart__svg"
+        viewBox="0 0 100 36"
+        preserveAspectRatio="none"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      >
         <defs>
           <linearGradient id="flyvio-trend-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--nexo-blue-soft)" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="var(--nexo-blue)" stopOpacity="0.04" />
+            <stop offset="0%" stopColor="var(--flyvio-cyan)" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="var(--flyvio-cyan)" stopOpacity="0.03" />
           </linearGradient>
         </defs>
         <path className="flyvio-trend-chart__area" d={areaD} fill="url(#flyvio-trend-fill)" />
         <path className="flyvio-trend-chart__grid" d="M0 18 H100" fill="none" />
         <path className="flyvio-trend-chart__line" d={lineD} fill="none" />
-        {dots.map((p, i) => (
-          <circle key={i} className="flyvio-trend-chart__dot" cx={p.x} cy={p.y} r="1.35" />
-        ))}
+        {tooltip && (
+          <>
+            <line
+              x1={tooltip.x}
+              y1={2}
+              x2={tooltip.x}
+              y2={34}
+              stroke="var(--flyvio-cyan)"
+              strokeWidth="0.5"
+              strokeDasharray="2 1"
+              opacity="0.5"
+            />
+            <circle cx={tooltip.x} cy={tooltip.y} r="2" fill="var(--flyvio-cyan)" />
+          </>
+        )}
       </svg>
+      {tooltip && (
+        <div
+          className="flyvio-trend-tooltip"
+          style={{
+            left: `${(tooltip.x / 100) * 100}%`,
+            top: `${((tooltip.y - 8) / 36) * 100}%`,
+          }}
+        >
+          {tooltip.label}：¥{tooltip.value}
+        </div>
+      )}
       <div className="flyvio-trend-chart__axis" aria-hidden>
         <span>较早</span>
         <span>近日</span>
@@ -128,12 +208,13 @@ export function HomeSmartModules() {
 
   return (
     <section className="flyvio-smart-grid" aria-label="智能功能栏位">
-      <div className="flyvio-smart-card">
-        <h3 className="flyvio-smart-card__h">
+      {/* 价格走势预测 */}
+      <div className="flyvio-smart-card" id="flyvio-trend-section">
+        <h3 className="flyvio-section-title">
           <span className="flyvio-smart-card__icon" aria-hidden>
-            📈
+            <TrendIcon />
           </span>
-          价格趋势预测
+          价格走势预测
         </h3>
         <label className="flyvio-smart-label" htmlFor="flyvio-trend-route">
           航程筛选
@@ -170,14 +251,15 @@ export function HomeSmartModules() {
         </Link>
       </div>
 
-      <div className="flyvio-smart-card">
-        <h3 className="flyvio-smart-card__h">
+      {/* 低价趋势监控 */}
+      <div className="flyvio-smart-card" id="flyvio-monitor-section">
+        <h3 className="flyvio-section-title">
           <span className="flyvio-smart-card__icon" aria-hidden>
-            🔔
+            <BellIcon />
           </span>
-          低价监控与提醒
+          低价趋势监控
         </h3>
-        <p className="flyvio-smart-card__d">7×24 目标价到价提醒（演示，需登录后保存）</p>
+        <p className="flyvio-smart-card__d">7天×24小时 目标价到价提醒（演示，需登录后保存）</p>
         <label className="flyvio-smart-label">航线</label>
         <div className="flyvio-smart-row">
           <input className="flyvio-smart-input" value={monDep} onChange={(e) => setMonDep(e.target.value)} />
@@ -197,52 +279,6 @@ export function HomeSmartModules() {
         >
           前往监控页配置
         </Link>
-      </div>
-
-      <div className="flyvio-smart-card">
-        <h3 className="flyvio-smart-card__h">
-          <span className="flyvio-smart-card__icon" aria-hidden>
-            ⚙
-          </span>
-          智能筛选
-        </h3>
-        <p className="flyvio-smart-card__d">一键带入查询条件</p>
-        <div className="flyvio-smart-chips">
-          <Link to="/flights?depCity=北京&arrCity=上海&depDate=2026-04-15&directOnly=1" className="flyvio-chip">
-            仅直飞
-          </Link>
-          <Link to="/flights?depCity=北京&arrCity=上海&depDate=2026-04-15&sort=price" className="flyvio-chip">
-            低价优先
-          </Link>
-          <Link to="/flights?depCity=北京&arrCity=上海&depDate=2026-04-15&timeSlot=morning" className="flyvio-chip">
-            早班 06–12
-          </Link>
-          <Link to="/search" className="flyvio-chip flyvio-chip--primary">
-            自定义搜索
-          </Link>
-        </div>
-      </div>
-
-      <div className="flyvio-smart-card flyvio-smart-card--chat">
-        <h3 className="flyvio-smart-card__h">
-          <span className="flyvio-smart-card__icon" aria-hidden>
-            💬
-          </span>
-          智能助手对话框
-        </h3>
-        <p className="flyvio-smart-card__d">自然语言问票规、比价逻辑、监控设置；演示为规则回复。</p>
-        <ul className="flyvio-smart-bullets">
-          <li>「下周北京飞上海会涨价吗？」</li>
-          <li>「帮我解释不可退改是什么意思」</li>
-          <li>「怎么开低价提醒？」</li>
-        </ul>
-        <button
-          type="button"
-          className="flyvio-smart-btn flyvio-smart-btn--ghost"
-          onClick={() => document.getElementById('flyvio-chat-fab')?.click()}
-        >
-          打开右下角助手
-        </button>
       </div>
     </section>
   );

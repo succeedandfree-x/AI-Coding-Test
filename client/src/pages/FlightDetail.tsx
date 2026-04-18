@@ -77,21 +77,21 @@ export function FlightDetail() {
     }
   }
 
-  if (!f && !err) return <div className="nexo-page nexo-loading">加载详情…</div>;
+  if (!f && !err) return <div className="flyvio-page flyvio-loading">加载详情…</div>;
 
   return (
-    <div className="nexo-page">
+    <div className="flyvio-page">
       <TopNav title="航班与乘机人" />
 
-      {err && <div className="nexo-error">{err}</div>}
+      {err && <div className="flyvio-error">{err}</div>}
 
       {f && (
         <>
-          <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
+          <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
             <div style={{ fontWeight: 800, fontSize: '1.1rem', marginBottom: 8 }}>
               {f.dep_city} → {f.arr_city}
             </div>
-            <div className="nexo-muted" style={{ fontSize: '0.9rem', lineHeight: 1.6 }}>
+            <div className="flyvio-muted" style={{ fontSize: '0.9rem', lineHeight: 1.6 }}>
               <div>
                 {f.dep_time.replace('T', ' ').slice(0, 16)} 起飞 · {f.arr_time.replace('T', ' ').slice(0, 16)} 到达
               </div>
@@ -104,13 +104,13 @@ export function FlightDetail() {
             </div>
           </div>
 
-          <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
+          <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
             <h3 style={{ margin: '0 0 12px', fontSize: '1rem' }}>价格套餐</h3>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
               <span>基础票价（单人）</span>
-              <strong style={{ color: 'var(--nexo-blue)' }}>¥{f.price}</strong>
+              <strong style={{ color: 'var(--flyvio-blue)' }}>¥{f.price}</strong>
             </div>
-            <div className="nexo-muted" style={{ fontSize: '0.88rem', lineHeight: 1.6 }}>
+            <div className="flyvio-muted" style={{ fontSize: '0.88rem', lineHeight: 1.6 }}>
               <div>行李：{f.baggage_info}</div>
               <div>餐食：{f.meal_info}</div>
               {f.transfer_info && <div>中转：{f.transfer_info}</div>}
@@ -118,25 +118,25 @@ export function FlightDetail() {
             </div>
           </div>
 
-          <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
+          <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
             <h3 style={{ margin: '0 0 12px', fontSize: '1rem' }}>乘机人</h3>
-            <input className="nexo-input" placeholder="姓名" value={name} onChange={(e) => setName(e.target.value)} style={{ marginBottom: 10 }} />
-            <select className="nexo-input" value={idType} onChange={(e) => setIdType(e.target.value)} style={{ marginBottom: 10 }}>
+            <input className="flyvio-input" placeholder="姓名" value={name} onChange={(e) => setName(e.target.value)} style={{ marginBottom: 10 }} />
+            <select className="flyvio-input" value={idType} onChange={(e) => setIdType(e.target.value)} style={{ marginBottom: 10 }}>
               <option>身份证</option>
               <option>护照</option>
             </select>
-            <input className="nexo-input" placeholder="证件号码" value={idNo} onChange={(e) => setIdNo(e.target.value)} />
+            <input className="flyvio-input" placeholder="证件号码" value={idNo} onChange={(e) => setIdNo(e.target.value)} />
           </div>
 
-          <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
+          <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
             <h3 style={{ margin: '0 0 12px', fontSize: '1rem' }}>联系人</h3>
-            <input className="nexo-input" placeholder="接收短信的手机号" value={phone} onChange={(e) => setPhone(e.target.value)} />
+            <input className="flyvio-input" placeholder="接收短信的手机号" value={phone} onChange={(e) => setPhone(e.target.value)} />
           </div>
 
           {coupons.length > 0 && (
-            <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
+            <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
               <h3 style={{ margin: '0 0 12px', fontSize: '1rem' }}>优惠抵扣</h3>
-              <select className="nexo-input" value={couponId} onChange={(e) => setCouponId(e.target.value)}>
+              <select className="flyvio-input" value={couponId} onChange={(e) => setCouponId(e.target.value)}>
                 <option value="">不使用优惠券</option>
                 {coupons.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -147,19 +147,19 @@ export function FlightDetail() {
             </div>
           )}
 
-          <div className="nexo-card" style={{ padding: 16, marginBottom: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="flyvio-card" style={{ padding: 16, marginBottom: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <div className="nexo-muted" style={{ fontSize: '0.8rem' }}>
+              <div className="flyvio-muted" style={{ fontSize: '0.8rem' }}>
                 合计（含演示税费逻辑简化）
               </div>
-              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--nexo-blue)' }}>¥{f.price}</div>
+              <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--flyvio-blue)' }}>¥{f.price}</div>
             </div>
-            <Link to="/flights" className="nexo-muted" style={{ fontSize: '0.85rem' }}>
+            <Link to="/flights" className="flyvio-muted" style={{ fontSize: '0.85rem' }}>
               返回列表
             </Link>
           </div>
 
-          <button type="button" className="nexo-btn-primary" disabled={submitting} onClick={() => void submit()}>
+          <button type="button" className="flyvio-btn-primary" disabled={submitting} onClick={() => void submit()}>
             {submitting ? '提交中…' : '提交订单'}
           </button>
         </>

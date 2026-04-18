@@ -1,1 +1,1 @@
-process.env.NEXO_DB_PATH = ':memory:';
+process.env.FLYVIO_DB_PATH = ':memory:';

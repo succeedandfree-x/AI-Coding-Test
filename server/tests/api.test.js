@@ -13,7 +13,7 @@ test('GET / 返回前端或 API 说明页', async () => {
   const res = await request(app).get('/');
   assert.strictEqual(res.status, 200);
   const isSpa = res.text.includes('root') || res.text.includes('Flyvio');
-  const isApiLanding = res.text.includes('Nexo');
+  const isApiLanding = res.text.includes('FLYVIO');
   assert.ok(isSpa || isApiLanding);
 });
 

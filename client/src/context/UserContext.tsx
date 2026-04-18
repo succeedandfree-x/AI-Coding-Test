@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { api } from '../api';
 
-const STORAGE_KEY = 'nexo_user_id';
+const STORAGE_KEY = 'flyvio_user_id';
 
 type UserState = {
   userId: string | null;

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = process.env.NEXO_DB_PATH || join(__dirname, '..', 'data', 'nexo.db');
+const dbPath = process.env.FLYVIO_DB_PATH || join(__dirname, '..', 'data', 'flyvio.db');
 
 if (dbPath !== ':memory:') {
   mkdirSync(dirname(dbPath), { recursive: true });
@@ -233,13 +233,36 @@ export function seedIfEmpty() {
       is_direct: 1,
       tags: '["直飞"]',
     },
+    {
+      id: 'f6',
+      airline: '春秋航空',
+      flight_no: '9C8801',
+      dep_city: '北京',
+      arr_city: '广州',
+      dep_airport: '大兴',
+      arr_airport: '白云T2',
+      dep_terminal: null,
+      arr_terminal: 'T2',
+      dep_time: '2026-04-16T06:50:00',
+      arr_time: '2026-04-16T09:55:00',
+      duration_min: 185,
+      price: 450,
+      cabin: '经济舱',
+      baggage_info: '手提7kg×1，无免费托运',
+      refund_policy: '特价不可退改',
+      meal_info: '无',
+      transfer_info: null,
+      stock: 15,
+      is_direct: 1,
+      tags: '["直飞","低价"]',
+    },
   ];
 
   const tx = db.transaction(() => {
     for (const f of flights) insertFlight.run(f);
     db.prepare(
       `INSERT INTO coupons (id, code, title, discount_type, discount_value, min_amount, valid_from, valid_to, stock)
-       VALUES ('c1', 'NEXO50', '新客立减', 'fixed', 50, 300, '2026-01-01', '2026-12-31', 999)`
+       VALUES ('c1', 'FLYVIO50', '新客立减', 'fixed', 50, 300, '2026-01-01', '2026-12-31', 999)`
     ).run();
     db.prepare(
       `INSERT INTO users (id, phone, nickname, preferences_json) VALUES ('u-demo', '13800000000', '演示用户', '{"cabinPref":"经济舱","budget":800}')`

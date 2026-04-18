@@ -1,4 +1,4 @@
-# Nexo API 摘要
+# FLYVIO API 摘要
 
 基础路径：`http://localhost:3001/api`（前端开发态通过 Vite 代理为同源 `/api`）。
 

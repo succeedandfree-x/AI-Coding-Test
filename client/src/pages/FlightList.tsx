@@ -58,30 +58,30 @@ export function FlightList() {
   }, [sp, depCity, arrCity, depDate]);
 
   return (
-    <div className="nexo-page">
+    <div className="flyvio-page">
       <TopNav title="航班列表" showSearch />
 
       {aiHint && (
-        <div className="nexo-card" style={{ padding: 14, marginBottom: 12, background: 'linear-gradient(90deg, #fff9ee, #e8f4ff)' }}>
-          <div style={{ fontWeight: 700, marginBottom: 4, color: 'var(--nexo-blue)' }}>价格走势参考</div>
-          <div className="nexo-muted" style={{ fontSize: '0.9rem' }}>
+        <div className="flyvio-card" style={{ padding: 14, marginBottom: 12, background: 'linear-gradient(90deg, #ecfeff, #edf5fc)', borderLeft: '3px solid var(--flyvio-cyan)' }}>
+          <div style={{ fontWeight: 700, marginBottom: 4, color: 'var(--flyvio-blue)' }}>价格走势参考</div>
+          <div className="flyvio-muted" style={{ fontSize: '0.9rem' }}>
             {aiHint}
           </div>
         </div>
       )}
 
-      <div className="nexo-card" style={{ padding: 12, marginBottom: 12, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        <span className="nexo-chip-blue">排序与筛选已在查询页选择</span>
-        <Link to={`/search?dep=${encodeURIComponent(depCity)}&arr=${encodeURIComponent(arrCity)}`} className="nexo-chip">
+      <div className="flyvio-card" style={{ padding: 12, marginBottom: 12, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        <span className="flyvio-chip-blue">排序与筛选已在查询页选择</span>
+        <Link to={`/search?dep=${encodeURIComponent(depCity)}&arr=${encodeURIComponent(arrCity)}`} className="flyvio-chip">
           修改条件
         </Link>
       </div>
 
-      {loading && <div className="nexo-loading">加载航班…</div>}
-      {err && <div className="nexo-error">{err}</div>}
+      {loading && <div className="flyvio-loading">加载航班…</div>}
+      {err && <div className="flyvio-error">{err}</div>}
 
       {!loading && !err && list.length === 0 && (
-        <div className="nexo-muted" style={{ textAlign: 'center', padding: 32 }}>
+        <div className="flyvio-muted" style={{ textAlign: 'center', padding: 32 }}>
           暂无航班，试试更换日期或城市（演示数据含北京→上海、上海→广州/成都）。
         </div>
       )}
@@ -91,7 +91,7 @@ export function FlightList() {
           <Link
             key={f.id}
             to={`/flights/${f.id}`}
-            className="nexo-card"
+            className="flyvio-card"
             style={{ padding: 16, textDecoration: 'none', color: 'inherit' }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -99,7 +99,7 @@ export function FlightList() {
                 <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>
                   {fmtTime(f.dep_time)} – {fmtTime(f.arr_time)}
                 </div>
-                <div className="nexo-muted" style={{ fontSize: '0.85rem', marginTop: 4 }}>
+                <div className="flyvio-muted" style={{ fontSize: '0.85rem', marginTop: 4 }}>
                   {f.dep_airport} → {f.arr_airport} · {fmtDur(f.duration_min)}
                 </div>
                 <div style={{ marginTop: 8, fontWeight: 600 }}>
@@ -107,18 +107,18 @@ export function FlightList() {
                 </div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--nexo-blue)' }}>¥{f.price}</div>
+                <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--flyvio-blue)' }}>¥{f.price}</div>
                 <div style={{ marginTop: 6 }}>
-                  {f.is_direct ? <span className="nexo-chip-blue">直飞</span> : <span className="nexo-chip">中转</span>}
+                  {f.is_direct ? <span className="flyvio-chip-blue">直飞</span> : <span className="flyvio-chip">中转</span>}
                   {f.tags?.includes('优惠') && (
-                    <span className="nexo-chip" style={{ marginLeft: 4 }}>
+                    <span className="flyvio-chip" style={{ marginLeft: 4 }}>
                       优惠
                     </span>
                   )}
                 </div>
               </div>
             </div>
-            <div className="nexo-muted" style={{ fontSize: '0.78rem', marginTop: 10, lineHeight: 1.5 }}>
+            <div className="flyvio-muted" style={{ fontSize: '0.78rem', marginTop: 10, lineHeight: 1.5 }}>
               行李：{f.baggage_info} · 退改：{f.refund_policy.slice(0, 36)}
               {f.refund_policy.length > 36 ? '…' : ''}
             </div>

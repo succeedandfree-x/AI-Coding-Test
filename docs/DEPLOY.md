@@ -1,4 +1,4 @@
-# Nexo 部署指南
+# FLYVIO 部署指南
 
 ## 构建前端
 
@@ -22,14 +22,14 @@ npm start
 
 ### 数据库路径
 
-默认 SQLite 文件：`server/data/nexo.db`。自定义：
+默认 SQLite 文件：`server/data/flyvio.db`。自定义：
 
 ```bash
-set NEXO_DB_PATH=D:\data\nexo.db
+set FLYVIO_DB_PATH=D:\data\flyvio.db
 node src/index.js
 ```
 
-（Linux/macOS 使用 `export NEXO_DB_PATH=...`。）
+（Linux/macOS 使用 `export FLYVIO_DB_PATH=...`。）
 
 ## 一体化部署（同机）
 

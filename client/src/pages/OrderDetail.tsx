@@ -39,16 +39,16 @@ export function OrderDetail() {
 
   if (!userId) {
     return (
-      <div className="nexo-page">
+      <div className="flyvio-page">
         <TopNav title="订单详情" />
-        <div className="nexo-error">请先登录</div>
+        <div className="flyvio-error">请先登录</div>
       </div>
     );
   }
 
   if (!o) {
     return (
-      <div className="nexo-page nexo-loading">
+      <div className="flyvio-page flyvio-loading">
         {err || '加载中…'}
       </div>
     );
@@ -57,22 +57,22 @@ export function OrderDetail() {
   const f = o.flights[0];
 
   return (
-    <div className="nexo-page">
+    <div className="flyvio-page">
       <TopNav title="订单详情" />
 
-      {err && <div className="nexo-error">{err}</div>}
+      {err && <div className="flyvio-error">{err}</div>}
 
-      <div className="nexo-card" style={{ padding: 16, marginBottom: 12 }}>
+      <div className="flyvio-card" style={{ padding: 16, marginBottom: 12 }}>
         <div style={{ fontWeight: 800, marginBottom: 6 }}>状态：{o.status}</div>
-        <div className="nexo-muted" style={{ fontSize: '0.85rem' }}>
+        <div className="flyvio-muted" style={{ fontSize: '0.85rem' }}>
           下单时间 {o.created_at?.replace('T', ' ').slice(0, 19)}
         </div>
       </div>
 
       {f && (
-        <div className="nexo-card" style={{ padding: 16, marginBottom: 12 }}>
+        <div className="flyvio-card" style={{ padding: 16, marginBottom: 12 }}>
           <h3 style={{ margin: '0 0 10px', fontSize: '1rem' }}>航班信息</h3>
-          <div className="nexo-muted" style={{ fontSize: '0.9rem', lineHeight: 1.7 }}>
+          <div className="flyvio-muted" style={{ fontSize: '0.9rem', lineHeight: 1.7 }}>
             <div>
               {f.dep_city} → {f.arr_city}
             </div>
@@ -89,33 +89,33 @@ export function OrderDetail() {
         </div>
       )}
 
-      <div className="nexo-card" style={{ padding: 16, marginBottom: 12 }}>
+      <div className="flyvio-card" style={{ padding: 16, marginBottom: 12 }}>
         <h3 style={{ margin: '0 0 10px', fontSize: '1rem' }}>乘机人</h3>
         {o.passengers.map((p) => (
-          <div key={p.idNo} className="nexo-muted" style={{ fontSize: '0.9rem', marginBottom: 6 }}>
+          <div key={p.idNo} className="flyvio-muted" style={{ fontSize: '0.9rem', marginBottom: 6 }}>
             {p.name} · {p.idType} {p.idNo}
           </div>
         ))}
         <div style={{ marginTop: 8 }}>联系人手机：{o.contact_phone}</div>
       </div>
 
-      <div className="nexo-card" style={{ padding: 16, marginBottom: 12 }}>
+      <div className="flyvio-card" style={{ padding: 16, marginBottom: 12 }}>
         <h3 style={{ margin: '0 0 10px', fontSize: '1rem' }}>费用明细</h3>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <span>实付</span>
-          <strong style={{ color: 'var(--nexo-blue)' }}>¥{o.total_amount}</strong>
+          <strong style={{ color: 'var(--flyvio-blue)' }}>¥{o.total_amount}</strong>
         </div>
         {o.discount_amount > 0 && (
-          <div className="nexo-muted" style={{ fontSize: '0.85rem', marginTop: 6 }}>
+          <div className="flyvio-muted" style={{ fontSize: '0.85rem', marginTop: 6 }}>
             优惠 ¥{o.discount_amount}
           </div>
         )}
       </div>
 
       {f && (
-        <div className="nexo-card" style={{ padding: 16, marginBottom: 12 }}>
+        <div className="flyvio-card" style={{ padding: 16, marginBottom: 12 }}>
           <h3 style={{ margin: '0 0 10px', fontSize: '1rem' }}>电子客票 / 退改</h3>
-          <div className="nexo-muted" style={{ fontSize: '0.88rem', lineHeight: 1.6 }}>
+          <div className="flyvio-muted" style={{ fontSize: '0.88rem', lineHeight: 1.6 }}>
             演示环境不生成真实票号。退改签政策：{f.refund_policy}
           </div>
         </div>
@@ -124,15 +124,15 @@ export function OrderDetail() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {o.status === 'pending' && (
           <>
-            <Link to={`/orders/${o.id}/pay`} className="nexo-btn-primary" style={{ textDecoration: 'none' }}>
+            <Link to={`/orders/${o.id}/pay`} className="flyvio-btn-primary" style={{ textDecoration: 'none' }}>
               继续支付
             </Link>
-            <button type="button" className="nexo-btn-secondary" style={{ width: '100%' }} onClick={() => void cancel()}>
+            <button type="button" className="flyvio-btn-secondary" style={{ width: '100%' }} onClick={() => void cancel()}>
               取消订单
             </button>
           </>
         )}
-        <Link to="/search" className="nexo-btn-secondary" style={{ width: '100%', textDecoration: 'none' }}>
+        <Link to="/search" className="flyvio-btn-secondary" style={{ width: '100%', textDecoration: 'none' }}>
           再次购票
         </Link>
       </div>

@@ -1,56 +1,59 @@
 :root {
-  --nexo-cream: #e8f2fc;
-  --nexo-cream-deep: #d4e8f8;
-  --nexo-blue: #1e5a8e;
-  --nexo-blue-soft: #2d6fa3;
-  --nexo-yellow: #f4c14b;
-  --nexo-yellow-soft: #ffe08a;
-  --nexo-ink: #1a1f2e;
-  --nexo-muted: #5c6478;
-  --nexo-card: #ffffff;
-  --nexo-radius: 16px;
-  --nexo-shadow: 0 8px 32px rgba(30, 90, 142, 0.08);
-  --nexo-safe-bottom: env(safe-area-inset-bottom, 0px);
-  /* 横向：随 vw；竖向/矮屏：用 vmin、svh 防止裁切；上限分档 */
-  --nexo-pad-x: clamp(12px, 3.2vmin, 40px);
-  --nexo-pad-y: clamp(10px, 2.4vmin, 20px);
-  --nexo-page-max: min(1100px, calc(100vw - 2 * var(--nexo-pad-x)));
-  --nexo-tab-pad-bottom: clamp(72px, 14vmin, 96px);
+  /* ===== Blue-White-Cyan Color System ===== */
+  --flyvio-bg: #f0f6fc;
+  --flyvio-bg-deep: #ddeaf6;
+  --flyvio-blue: #0d4a7a;
+  --flyvio-blue-soft: #1a6fb5;
+  --flyvio-cyan: #0891b2;
+  --flyvio-cyan-soft: #cff4fc;
+  --flyvio-green: #0d9488;
+  --flyvio-green-soft: #d1fae5;
+  --flyvio-ink: #0f1d2e;
+  --flyvio-muted: #5a6a80;
+  --flyvio-card: #ffffff;
+  --flyvio-radius: 8px;
+  --flyvio-radius-sm: 4px;
+  --flyvio-radius-lg: 12px;
+  --flyvio-shadow: 0 1px 4px rgba(13, 74, 122, 0.07), 0 0 1px rgba(13, 74, 122, 0.1);
+  --flyvio-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --flyvio-pad-x: clamp(12px, 3.2vmin, 40px);
+  --flyvio-pad-y: clamp(10px, 2.4vmin, 20px);
+  --flyvio-page-max: min(1100px, calc(100vw - 2 * var(--flyvio-pad-x)));
+  --flyvio-tab-pad-bottom: clamp(72px, 14vmin, 96px);
   font-family: 'DM Sans', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
 }
 
 @media (min-width: 768px) {
   :root {
-    --nexo-page-max: min(960px, calc(100vw - 2 * var(--nexo-pad-x)));
+    --flyvio-page-max: min(960px, calc(100vw - 2 * var(--flyvio-pad-x)));
   }
 }
 
 @media (min-width: 1200px) {
   :root {
-    --nexo-page-max: min(1100px, calc(100vw - 2 * var(--nexo-pad-x)));
+    --flyvio-page-max: min(1100px, calc(100vw - 2 * var(--flyvio-pad-x)));
   }
 }
 
 @supports (width: 100svw) {
   :root {
-    --nexo-page-max: min(1100px, calc(100svw - 2 * var(--nexo-pad-x)));
+    --flyvio-page-max: min(1100px, calc(100svw - 2 * var(--flyvio-pad-x)));
   }
   @media (min-width: 768px) {
     :root {
-      --nexo-page-max: min(960px, calc(100svw - 2 * var(--nexo-pad-x)));
+      --flyvio-page-max: min(960px, calc(100svw - 2 * var(--flyvio-pad-x)));
     }
   }
   @media (min-width: 1200px) {
     :root {
-      --nexo-page-max: min(1100px, calc(100svw - 2 * var(--nexo-pad-x)));
+      --flyvio-page-max: min(1100px, calc(100svw - 2 * var(--flyvio-pad-x)));
     }
   }
 }
 
-/* 矮屏横屏：压缩垂直占位，避免长宽比极端时版面「挤」 */
 @media (orientation: landscape) and (max-height: 520px) {
   :root {
-    --nexo-tab-pad-bottom: clamp(60px, 12vmin, 80px);
+    --flyvio-tab-pad-bottom: clamp(60px, 12vmin, 80px);
   }
 }
 
@@ -61,14 +64,14 @@
 }
 
 html {
-  background: var(--nexo-cream);
-  color: var(--nexo-ink);
+  background: var(--flyvio-bg);
+  color: var(--flyvio-ink);
 }
 
 body {
   margin: 0;
   min-height: 100dvh;
-  background: linear-gradient(165deg, var(--nexo-cream) 0%, var(--nexo-cream-deep) 42%, #c8ddf5 100%);
+  background: linear-gradient(165deg, var(--flyvio-bg) 0%, var(--flyvio-bg-deep) 42%, #c8ddf5 100%);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -77,7 +80,7 @@ body {
 }
 
 a {
-  color: var(--nexo-blue);
+  color: var(--flyvio-blue);
   text-decoration: none;
 }
 
@@ -91,18 +94,26 @@ textarea {
   font-family: inherit;
 }
 
-.nexo-page {
+/* ===== Page Container ===== */
+.flyvio-page {
   width: 100%;
-  max-width: var(--nexo-page-max);
+  max-width: var(--flyvio-page-max);
   margin: 0 auto;
   min-height: 100dvh;
   min-height: 100svh;
-  padding: 0 var(--nexo-pad-x) var(--nexo-tab-pad-bottom);
-  padding-bottom: calc(var(--nexo-tab-pad-bottom) + var(--nexo-safe-bottom));
+  padding: 0 var(--flyvio-pad-x) var(--flyvio-tab-pad-bottom);
+  padding-bottom: calc(var(--flyvio-tab-pad-bottom) + var(--flyvio-safe-bottom));
 }
 
-/* —— TopNav：中间品牌区加宽，突出产品名 —— */
-.nexo-topnav {
+/* PC: no bottom tab bar padding */
+@media (min-width: 768px) {
+  .flyvio-page {
+    padding-bottom: var(--flyvio-pad-y);
+  }
+}
+
+/* ===== Mobile TopNav (default) ===== */
+.flyvio-topnav {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(0, 2.3fr) minmax(0, 0.85fr);
   align-items: center;
@@ -111,30 +122,30 @@ textarea {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: linear-gradient(180deg, rgba(232, 242, 252, 0.98) 72%, transparent);
+  background: transparent;
 }
 
-.nexo-topnav__side {
+.flyvio-topnav__side {
   display: flex;
   align-items: center;
   min-height: 44px;
 }
 
-.nexo-topnav__side--left {
+.flyvio-topnav__side--left {
   justify-content: flex-start;
 }
 
-.nexo-topnav__side--right {
+.flyvio-topnav__side--right {
   justify-content: flex-end;
   gap: 10px;
 }
 
-.nexo-topnav__brand {
+.flyvio-topnav__brand {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 2px;
   text-align: center;
   line-height: 1.2;
   min-width: 0;
@@ -143,410 +154,556 @@ textarea {
   margin-inline: auto;
 }
 
-.nexo-topnav__brand-product {
-  font-weight: 800;
-  font-size: clamp(0.82rem, 3.4vw, 1.2rem);
-  letter-spacing: -0.025em;
+.flyvio-topnav__brand-product {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
   line-height: 1.28;
   max-width: 100%;
   text-wrap: balance;
 }
 
-.nexo-topnav__brand-flyvio {
-  color: var(--nexo-blue);
-  font-size: 1.05em;
-  letter-spacing: -0.03em;
-}
-
-.nexo-topnav__brand-tag {
-  color: var(--nexo-ink);
+.flyvio-topnav__brand-flyvio {
+  color: transparent;
+  font-family: Georgia, 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
   font-weight: 700;
-  font-size: 0.92em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--flyvio-blue) 0%, var(--flyvio-cyan) 50%, var(--flyvio-blue-soft) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: flyvio-shimmer 4s ease-in-out infinite;
 }
 
-.nexo-topnav__brand-page {
+@keyframes flyvio-shimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.flyvio-topnav__brand-tag {
+  color: var(--flyvio-muted);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(0.7rem, 2.2vw, 0.82rem);
+  letter-spacing: 0.01em;
+}
+
+.flyvio-topnav__brand-page {
   width: 100%;
   font-weight: 700;
   font-size: clamp(0.75rem, 2.2vw, 0.88rem);
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   margin-top: 1px;
 }
 
-.nexo-topnav__search {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 700;
-  background: rgba(30, 90, 142, 0.12);
-  color: var(--nexo-blue);
-  text-decoration: none;
-  border: 1px solid rgba(30, 90, 142, 0.2);
-}
-
-.nexo-topnav__search:hover {
-  background: rgba(30, 90, 142, 0.18);
-}
-
-/* —— 首页：热门航线 auto-fit 栅格（随容器宽度增减列） —— */
-.nexo-home-hot-routes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
-  gap: clamp(12px, 2.4vmin, 20px);
-  align-items: stretch;
-  width: 100%;
-}
-
-/* —— 今日特价：窄屏横滑；够宽则 auto-fill 栅格 —— */
-.nexo-home-specials {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: clamp(10px, 2vmin, 14px);
-  overflow-x: auto;
-  padding-bottom: 6px;
-  scroll-snap-type: x proximity;
-  width: 100%;
-}
-
-.nexo-home-specials > a {
-  flex: 0 0 min(12.5rem, calc(100vw - var(--nexo-pad-x) * 2 - 2rem));
-  scroll-snap-align: start;
-  min-width: 0;
-}
-
-@media (min-width: 36rem) {
-  .nexo-home-specials {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 11.5rem), 1fr));
-    overflow-x: visible;
-    scroll-snap-type: none;
-    flex-wrap: unset;
+/* ===== PC TopNav: horizontal nav bar ===== */
+@media (min-width: 768px) {
+  .flyvio-topnav {
+    grid-template-columns: auto 1fr auto;
+    gap: 0;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: rgba(240, 246, 252, 0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(13, 74, 122, 0.06);
   }
 
-  .nexo-home-specials > a {
-    flex: unset;
+  .flyvio-topnav__side--left {
+    display: none;
+  }
+
+  .flyvio-topnav__brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px 12px 0;
+    margin-inline: 0;
+    max-width: none;
+    white-space: nowrap;
+  }
+
+  .flyvio-topnav__brand-flyvio {
+    font-size: 1.8rem;
+  }
+
+  .flyvio-topnav__brand-tag {
+    font-size: 0.82rem;
+  }
+
+  .flyvio-topnav__brand-page {
+    display: none;
+  }
+
+  .flyvio-topnav__side--right {
+    gap: 0;
   }
 }
 
-/* —— 核心入口：auto-fit，小屏 2 列起，宽屏自然增至 4 列 —— */
-.nexo-core-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.25rem), 1fr));
-  gap: clamp(10px, 2vmin, 16px);
-  width: 100%;
+/* ===== PC Horizontal Nav Links (centered) ===== */
+.flyvio-pc-nav {
+  display: none;
 }
 
-.nexo-core-tile {
-  display: block;
-  padding: 16px 14px;
-  border-radius: var(--nexo-radius);
-  text-decoration: none;
-  border: 1px solid transparent;
-  box-shadow: 0 8px 28px rgba(30, 90, 142, 0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+@media (min-width: 768px) {
+  .flyvio-pc-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 0 12px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .flyvio-pc-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--flyvio-ink);
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .flyvio-pc-nav a:hover {
+    background: rgba(13, 74, 122, 0.06);
+  }
+
+  .flyvio-pc-nav a.active {
+    color: var(--flyvio-blue);
+    background: rgba(13, 74, 122, 0.08);
+    font-weight: 700;
+  }
+
+  .flyvio-pc-nav__icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
 }
 
-.nexo-core-tile:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 36px rgba(30, 90, 142, 0.12);
-}
-
-/* 左上、右下：蓝色系 */
-.nexo-core-tile--blue {
-  background: linear-gradient(145deg, #e8f1f9 0%, #d4e4f2 45%, #c5daf0 100%);
-  border-color: rgba(30, 90, 142, 0.22);
-}
-
-.nexo-core-tile--blue .nexo-core-tile__title {
-  color: #0f3d62;
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.nexo-core-tile--blue .nexo-core-tile__desc {
-  color: rgba(15, 61, 98, 0.78);
-  font-size: 0.84rem;
-  font-weight: 600;
-  margin-top: 6px;
-  line-height: 1.45;
-}
-
-/* 右上、左下：黄色系 */
-.nexo-core-tile--yellow {
-  background: linear-gradient(145deg, #fff6e0 0%, #ffecc5 40%, #ffd98a 100%);
-  border-color: rgba(212, 160, 40, 0.35);
-}
-
-.nexo-core-tile--yellow .nexo-core-tile__title {
-  color: #5c3d08;
-  font-size: 1.05rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-.nexo-core-tile--yellow .nexo-core-tile__desc {
-  color: rgba(92, 61, 8, 0.82);
-  font-size: 0.84rem;
-  font-weight: 600;
-  margin-top: 6px;
-  line-height: 1.45;
-}
-
-/* —— 底栏与内容区同宽 —— */
-.nexo-tabbar {
+/* ===== Mobile TabBar (hidden on PC) ===== */
+.flyvio-tabbar {
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: var(--nexo-page-max);
+  max-width: var(--flyvio-page-max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: center;
   justify-items: center;
-  padding: clamp(8px, 2vmin, 12px) clamp(6px, 2vmin, 12px) calc(clamp(8px, 2vmin, 12px) + var(--nexo-safe-bottom));
-  background: linear-gradient(180deg, rgba(228, 240, 252, 0.95) 0%, #d0e4f6 100%);
+  padding: clamp(6px, 1.6vmin, 10px) clamp(6px, 2vmin, 12px) calc(clamp(6px, 1.6vmin, 10px) + var(--flyvio-safe-bottom));
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
-  border-top: 1px solid rgba(30, 90, 142, 0.08);
+  border-top: 1px solid rgba(13, 74, 122, 0.08);
   z-index: 50;
-  box-shadow: 0 -4px 24px rgba(30, 90, 142, 0.06);
 }
 
-.nexo-tabbar a {
+.flyvio-tabbar a {
   width: 100%;
   max-width: 5.5rem;
   text-align: center;
   text-decoration: none;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   font-size: clamp(0.65rem, 2vmin, 0.75rem);
   font-weight: 500;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   align-items: center;
   justify-content: center;
 }
 
-.nexo-tabbar a.active {
-  color: var(--nexo-blue);
+.flyvio-tabbar a.active {
+  color: var(--flyvio-blue);
   font-weight: 700;
 }
 
-@media (min-width: 1024px) {
-  .nexo-page h3 {
+.flyvio-tabbar-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flyvio-tabbar-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Hide mobile tabbar on PC */
+@media (min-width: 768px) {
+  .flyvio-tabbar {
+    display: none;
+  }
+}
+
+/* ===== Hot Routes Grid ===== */
+.flyvio-home-hot-routes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
+  gap: clamp(10px, 2vmin, 16px);
+  align-items: stretch;
+  width: 100%;
+}
+
+/* PC: two columns for hot routes */
+@media (min-width: 768px) {
+  .flyvio-home-hot-routes {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  }
+}
+
+/* ===== Today Specials ===== */
+.flyvio-home-specials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: clamp(10px, 2vmin, 14px);
+  width: 100%;
+}
+
+.flyvio-home-specials > a {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+@media (min-width: 36rem) {
+  .flyvio-home-specials {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  }
+}
+
+/* PC: more generous specials grid */
+@media (min-width: 768px) {
+  .flyvio-home-specials {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 12px;
+  }
+}
+
+/* ===== Core Grid ===== */
+.flyvio-core-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.25rem), 1fr));
+  gap: clamp(8px, 1.6vmin, 12px);
+  width: 100%;
+}
+
+/* PC: 3 columns for core grid */
+@media (min-width: 768px) {
+  .flyvio-core-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+.flyvio-core-tile {
+  display: block;
+  padding: 14px 12px;
+  border-radius: var(--flyvio-radius-sm);
+  text-decoration: none;
+  border: 1px solid transparent;
+  box-shadow: var(--flyvio-shadow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.flyvio-core-tile:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(13, 74, 122, 0.1);
+}
+
+/* Blue accent */
+.flyvio-core-tile--blue {
+  background: linear-gradient(145deg, #edf5fc 0%, #dbe9f5 100%);
+  border-color: rgba(13, 74, 122, 0.12);
+}
+
+.flyvio-core-tile--blue .flyvio-core-tile__title {
+  color: var(--flyvio-blue);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.flyvio-core-tile--blue .flyvio-core-tile__desc {
+  color: rgba(13, 74, 122, 0.72);
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* Cyan accent */
+.flyvio-core-tile--yellow {
+  background: linear-gradient(145deg, #ecfeff 0%, #cff4fc 100%);
+  border-color: rgba(8, 145, 178, 0.15);
+}
+
+.flyvio-core-tile--yellow .flyvio-core-tile__title {
+  color: #0e5e6f;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.flyvio-core-tile--yellow .flyvio-core-tile__desc {
+  color: rgba(14, 94, 111, 0.72);
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* Green accent (AI features: trend & monitor) */
+.flyvio-core-tile--green {
+  background: linear-gradient(145deg, #ecfdf5 0%, #d1fae5 100%);
+  border-color: rgba(13, 148, 136, 0.15);
+}
+
+.flyvio-core-tile--green .flyvio-core-tile__title {
+  color: #065f46;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.flyvio-core-tile--green .flyvio-core-tile__desc {
+  color: rgba(6, 95, 70, 0.72);
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* ===== PC two-column home layout ===== */
+@media (min-width: 768px) {
+  .flyvio-page h3 {
     font-size: 1.12rem;
   }
 }
 
-.nexo-card {
-  background: var(--nexo-card);
-  border-radius: var(--nexo-radius);
-  box-shadow: var(--nexo-shadow);
-  border: 1px solid rgba(30, 90, 142, 0.06);
+/* ===== Cards & Buttons ===== */
+.flyvio-card {
+  background: var(--flyvio-card);
+  border-radius: var(--flyvio-radius);
+  box-shadow: var(--flyvio-shadow);
+  border: 1px solid rgba(13, 74, 122, 0.06);
 }
 
-.nexo-btn-primary {
+.flyvio-btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 14px 20px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--nexo-blue) 0%, var(--nexo-blue-soft) 100%);
+  border-radius: var(--flyvio-radius-sm);
+  background: linear-gradient(135deg, var(--flyvio-blue) 0%, var(--flyvio-cyan) 100%);
   color: #fff;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(30, 90, 142, 0.35);
+  box-shadow: 0 2px 8px rgba(13, 74, 122, 0.25);
 }
 
-.nexo-btn-primary:disabled {
+.flyvio-btn-primary:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
 
-.nexo-btn-secondary {
+.flyvio-btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 16px;
-  border-radius: 12px;
-  border: 2px solid var(--nexo-blue);
+  border-radius: var(--flyvio-radius-sm);
+  border: 1.5px solid var(--flyvio-blue);
   background: transparent;
-  color: var(--nexo-blue);
+  color: var(--flyvio-blue);
   font-weight: 600;
   cursor: pointer;
 }
 
-.nexo-chip {
+.flyvio-chip {
   display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
+  padding: 3px 8px;
+  border-radius: 3px;
   font-size: 0.75rem;
   font-weight: 600;
-  background: var(--nexo-yellow-soft);
-  color: #6b4a00;
+  background: var(--flyvio-cyan-soft);
+  color: #0e5e6f;
 }
 
-.nexo-chip-blue {
-  background: rgba(30, 90, 142, 0.12);
-  color: var(--nexo-blue);
+.flyvio-chip-blue {
+  background: rgba(13, 74, 122, 0.08);
+  color: var(--flyvio-blue);
 }
 
-.nexo-input {
+.flyvio-input {
   width: 100%;
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(30, 90, 142, 0.2);
+  padding: 10px 12px;
+  border-radius: var(--flyvio-radius-sm);
+  border: 1px solid rgba(13, 74, 122, 0.18);
   background: #fff;
   font-size: 1rem;
 }
 
-.nexo-input:focus {
-  outline: 2px solid var(--nexo-yellow);
-  border-color: var(--nexo-blue);
+.flyvio-input:focus {
+  outline: 2px solid var(--flyvio-cyan);
+  border-color: var(--flyvio-blue);
 }
 
-.nexo-h1 {
+.flyvio-h1 {
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0 0 8px;
   letter-spacing: -0.02em;
 }
 
-.nexo-muted {
-  color: var(--nexo-muted);
+.flyvio-muted {
+  color: var(--flyvio-muted);
   font-size: 0.9rem;
 }
 
-.nexo-loading {
+.flyvio-loading {
   text-align: center;
   padding: 48px;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
 }
 
-.nexo-error {
-  background: #fff0f0;
-  color: #a32020;
-  padding: 12px 14px;
-  border-radius: 12px;
+.flyvio-error {
+  background: #fef2f2;
+  color: #991b1b;
+  padding: 10px 12px;
+  border-radius: var(--flyvio-radius-sm);
   font-size: 0.9rem;
   margin-bottom: 12px;
+  border: 1px solid rgba(153, 27, 27, 0.1);
 }
 
-/* —— 首页热门航线：航班结果卡（容器查询 + 栅格，随卡片宽度变列） —— */
-.nexo-hot-flight-card {
+/* ===== Hot Flight Card ===== */
+.flyvio-hot-flight-card {
   container-type: inline-size;
   container-name: hotcard;
   width: 100%;
   min-width: 0;
   background: #fff;
-  border: 1px solid rgba(30, 90, 142, 0.2);
-  border-radius: clamp(10px, 2vmin, 14px);
-  box-shadow: 0 6px 28px rgba(30, 90, 142, 0.07);
+  border: 1px solid rgba(13, 74, 122, 0.1);
+  border-radius: var(--flyvio-radius);
+  box-shadow: var(--flyvio-shadow);
   overflow: hidden;
 }
 
-.nexo-hot-flight-card__top {
-  display: grid;
-  grid-template-columns: 1fr;
+.flyvio-hot-flight-card__top {
+  display: flex;
+  flex-direction: column;
   gap: clamp(10px, 2.6vmin, 18px);
   padding: clamp(12px, 3vmin, 18px) clamp(12px, 3vmin, 20px) clamp(10px, 2.6vmin, 15px);
-  border-bottom: 1px solid rgba(30, 90, 142, 0.08);
-  align-items: start;
+  border-bottom: 1px solid rgba(13, 74, 122, 0.06);
+  align-items: stretch;
 }
 
-/* 卡片本身够宽时：航司 | 时间轴 | 价格区 三列栅格 */
 @container hotcard (min-width: 26rem) {
-  .nexo-hot-flight-card__top {
+  .flyvio-hot-flight-card__top {
+    display: grid;
     grid-template-columns: minmax(0, min(32%, 10.5rem)) minmax(0, 1fr) minmax(0, min(30%, 9rem));
     column-gap: clamp(8px, 2vmin, 16px);
+    align-items: start;
   }
 }
 
-.nexo-hot-flight-card__airline {
+.flyvio-hot-flight-card__airline {
   display: flex;
   align-items: center;
   gap: clamp(8px, 2vmin, 12px);
   min-width: 0;
 }
 
-.nexo-hot-flight-card__logo {
-  width: clamp(36px, 9cqi, 44px);
-  height: clamp(36px, 9cqi, 44px);
-  border-radius: clamp(6px, 1.5vmin, 9px);
+.flyvio-hot-flight-card__logo {
+  width: clamp(32px, 8cqi, 40px);
+  height: clamp(32px, 8cqi, 40px);
+  border-radius: var(--flyvio-radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #fff;
-  font-size: clamp(0.65rem, 2cqi + 0.35rem, 0.75rem);
+  font-size: clamp(0.6rem, 1.8cqi + 0.3rem, 0.72rem);
   font-weight: 800;
   letter-spacing: 0.02em;
   flex-shrink: 0;
 }
 
 @supports not (width: 1cqi) {
-  .nexo-hot-flight-card__logo {
-    width: clamp(36px, 10vmin, 44px);
-    height: clamp(36px, 10vmin, 44px);
-    font-size: clamp(0.65rem, 2.2vmin, 0.75rem);
+  .flyvio-hot-flight-card__logo {
+    width: clamp(32px, 9vmin, 40px);
+    height: clamp(32px, 9vmin, 40px);
+    font-size: clamp(0.6rem, 2vmin, 0.72rem);
   }
 }
 
-.nexo-hot-flight-card__airline-name {
+.flyvio-hot-flight-card__airline-name {
   font-size: clamp(0.8rem, 2.4vmin, 0.92rem);
   font-weight: 700;
-  color: var(--nexo-ink);
+  color: var(--flyvio-ink);
   line-height: 1.25;
 }
 
-.nexo-hot-flight-card__flight-no {
+.flyvio-hot-flight-card__flight-no {
   font-size: clamp(0.68rem, 2vmin, 0.78rem);
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   margin-top: 2px;
 }
 
-/* 时间轴：三列栅格，左右 minmax(0,1fr) 防溢出 */
-.nexo-hot-flight-card__timeline {
+.flyvio-hot-flight-card__timeline {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(2.75rem, auto) minmax(0, 1fr);
+  grid-template-columns: minmax(4.5rem, 1fr) minmax(2.5rem, auto) minmax(4.5rem, 1fr);
   align-items: start;
   gap: clamp(4px, 1.2vmin, 10px);
   width: 100%;
   min-width: 0;
 }
 
-.nexo-hot-flight-card__time-block {
+.flyvio-hot-flight-card__time-block {
   min-width: 0;
 }
 
-.nexo-hot-flight-card__time-block--end {
+.flyvio-hot-flight-card__time-block--end {
   text-align: end;
 }
 
-.nexo-hot-flight-card__clock {
-  font-size: clamp(1.05rem, 3.5vmin, 1.5rem);
+.flyvio-hot-flight-card__clock {
+  font-size: clamp(0.95rem, 3vmin, 1.4rem);
   font-weight: 800;
-  color: #142a40;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  color: #0f1d2e;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
-.nexo-hot-flight-card__apt {
+.flyvio-hot-flight-card__apt {
   font-size: clamp(0.62rem, 1.8vmin, 0.74rem);
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   margin-top: 4px;
   line-height: 1.35;
   word-break: break-word;
 }
 
-.nexo-hot-flight-card__connector {
+.flyvio-hot-flight-card__connector {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -555,15 +712,15 @@ textarea {
   padding: 2px 2px 0;
 }
 
-.nexo-hot-flight-card__dur {
+.flyvio-hot-flight-card__dur {
   font-size: clamp(0.62rem, 1.8vmin, 0.72rem);
   font-weight: 700;
-  color: var(--nexo-blue-soft);
+  color: var(--flyvio-cyan);
   white-space: nowrap;
   text-align: center;
 }
 
-.nexo-hot-flight-card__line-track {
+.flyvio-hot-flight-card__line-track {
   display: flex;
   align-items: center;
   width: 100%;
@@ -571,112 +728,97 @@ textarea {
   margin: 4px 0 2px;
 }
 
-.nexo-hot-flight-card__line-dot {
+.flyvio-hot-flight-card__line-dot {
   width: clamp(5px, 1.2vmin, 7px);
   height: clamp(5px, 1.2vmin, 7px);
   border-radius: 50%;
-  background: var(--nexo-blue);
+  background: var(--flyvio-blue);
   flex-shrink: 0;
 }
 
-.nexo-hot-flight-card__line-dash {
+.flyvio-hot-flight-card__line-dash {
   flex: 1;
   height: 0;
-  border-top: 2px dashed rgba(30, 90, 142, 0.35);
+  border-top: 2px dashed rgba(13, 74, 122, 0.3);
   margin: 0 2px;
   min-width: 0;
 }
 
-.nexo-hot-flight-card__line-arrow {
+.flyvio-hot-flight-card__line-arrow {
   width: 0;
   height: 0;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 7px solid rgba(30, 90, 142, 0.5);
+  border-left: 7px solid rgba(13, 74, 122, 0.45);
   flex-shrink: 0;
 }
 
-.nexo-hot-flight-card__stop {
+.flyvio-hot-flight-card__stop {
   font-size: clamp(0.6rem, 1.6vmin, 0.68rem);
   font-weight: 600;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   text-align: center;
   line-height: 1.2;
 }
 
-/* 窄卡片：价格区整行；宽卡片：第三列右对齐 */
-.nexo-hot-flight-card__buy {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto auto;
-  column-gap: clamp(10px, 2.5vmin, 16px);
-  row-gap: 4px;
+.flyvio-hot-flight-card__buy {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   min-width: 0;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
-.nexo-hot-flight-card__badge {
-  grid-column: 1;
-  grid-row: 1;
-  justify-self: start;
+.flyvio-hot-flight-card__badge {
   display: inline-flex;
   align-items: center;
   gap: 4px;
   font-size: clamp(0.6rem, 1.7vmin, 0.68rem);
   font-weight: 700;
-  padding: 3px clamp(8px, 2vmin, 11px);
-  border-radius: 999px;
-  background: rgba(30, 90, 142, 0.1);
-  color: var(--nexo-blue);
-  border: 1px solid rgba(30, 90, 142, 0.18);
+  padding: 2px clamp(6px, 1.6vmin, 9px);
+  border-radius: 3px;
+  background: rgba(13, 74, 122, 0.08);
+  color: var(--flyvio-blue);
+  border: 1px solid rgba(13, 74, 122, 0.12);
 }
 
-.nexo-hot-flight-card__price {
-  grid-column: 1;
-  grid-row: 2;
-  justify-self: start;
-  font-size: clamp(1.2rem, 4.5vmin, 1.55rem);
+.flyvio-hot-flight-card__price {
+  font-size: clamp(1.1rem, 4vmin, 1.45rem);
   font-weight: 800;
-  color: #1a7fd4;
+  color: var(--flyvio-cyan);
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
 
-.nexo-hot-flight-card__tax {
-  grid-column: 1;
-  grid-row: 3;
-  justify-self: start;
+.flyvio-hot-flight-card__tax {
   font-size: clamp(0.62rem, 1.7vmin, 0.7rem);
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
 }
 
-.nexo-hot-flight-card__select {
-  grid-column: 2;
-  grid-row: 1 / span 3;
-  align-self: center;
-  justify-self: end;
-  margin-top: 0;
+.flyvio-hot-flight-card__select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: min(5.5rem, 100%);
+  min-width: 5rem;
   padding: clamp(8px, 2vmin, 10px) clamp(16px, 4vmin, 22px);
-  border-radius: clamp(8px, 2vmin, 11px);
-  background: linear-gradient(135deg, var(--nexo-blue) 0%, #163d5c 100%);
+  border-radius: var(--flyvio-radius-sm);
+  background: var(--flyvio-blue);
   color: #fff !important;
   font-size: clamp(0.8rem, 2.2vmin, 0.92rem);
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(30, 90, 142, 0.35);
+  box-shadow: 0 2px 8px rgba(13, 74, 122, 0.25);
+  flex-shrink: 0;
 }
 
-.nexo-hot-flight-card__select:hover {
+.flyvio-hot-flight-card__select:hover {
   filter: brightness(1.06);
 }
 
 @container hotcard (min-width: 26rem) {
-  .nexo-hot-flight-card__buy {
+  .flyvio-hot-flight-card__buy {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -685,7 +827,7 @@ textarea {
     gap: 4px;
   }
 
-  .nexo-hot-flight-card__select {
+  .flyvio-hot-flight-card__select {
     align-self: stretch;
     width: 100%;
     max-width: 7.5rem;
@@ -693,26 +835,40 @@ textarea {
   }
 }
 
-.nexo-hot-flight-card__meta {
-  padding: clamp(10px, 2.5vmin, 14px) clamp(12px, 3vmin, 18px) clamp(12px, 2.8vmin, 16px);
-  background: linear-gradient(180deg, #fafbfc 0%, #fff 100%);
+/* Small screen: ensure buy section stacks neatly */
+@container hotcard (max-width: 26rem) {
+  .flyvio-hot-flight-card__buy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+  .flyvio-hot-flight-card__buy > :first-child {
+    flex-shrink: 1;
+    min-width: 0;
+  }
 }
 
-.nexo-hot-flight-card__note {
+.flyvio-hot-flight-card__meta {
+  padding: clamp(10px, 2.5vmin, 14px) clamp(12px, 3vmin, 18px) clamp(12px, 2.8vmin, 16px);
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+}
+
+.flyvio-hot-flight-card__note {
   margin: 0 0 clamp(8px, 2vmin, 11px);
   font-size: clamp(0.66rem, 1.8vmin, 0.76rem);
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   line-height: 1.55;
 }
 
-.nexo-hot-flight-card__channels-label {
+.flyvio-hot-flight-card__channels-label {
   font-size: clamp(0.64rem, 1.7vmin, 0.72rem);
   font-weight: 700;
-  color: var(--nexo-blue);
+  color: var(--flyvio-blue);
   margin-bottom: 6px;
 }
 
-.nexo-hot-flight-card__channels {
+.flyvio-hot-flight-card__channels {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 7.5rem), 1fr));
   gap: clamp(6px, 1.6vmin, 10px);
@@ -720,55 +876,55 @@ textarea {
   width: 100%;
 }
 
-.nexo-hot-flight-card__channel-pill {
+.flyvio-hot-flight-card__channel-pill {
   font-size: clamp(0.62rem, 1.7vmin, 0.7rem);
   font-weight: 600;
   padding: 4px clamp(8px, 2vmin, 11px);
-  border-radius: 8px;
-  border: 1px solid rgba(30, 90, 142, 0.28);
-  color: var(--nexo-blue);
+  border-radius: var(--flyvio-radius-sm);
+  border: 1px solid rgba(13, 74, 122, 0.12);
+  color: var(--flyvio-blue);
   background: rgba(255, 255, 255, 0.9);
   text-align: center;
   min-width: 0;
 }
 
-.nexo-hot-flight-card__stop-detail {
+.flyvio-hot-flight-card__stop-detail {
   margin: 0 0 8px;
   font-size: 0.72rem;
-  color: var(--nexo-ink);
+  color: var(--flyvio-ink);
   line-height: 1.5;
 }
 
-.nexo-hot-flight-card__risk {
+.flyvio-hot-flight-card__risk {
   display: inline-block;
   font-size: 0.68rem;
   font-weight: 700;
-  padding: 5px 10px;
-  border-radius: 8px;
-  background: linear-gradient(90deg, #fff3cc 0%, #ffe08a 100%);
-  color: #5c4510;
+  padding: 4px 8px;
+  border-radius: var(--flyvio-radius-sm);
+  background: #fef3c7;
+  color: #92400e;
   margin-bottom: 8px;
-  border: 1px solid rgba(212, 160, 40, 0.35);
+  border: 1px solid rgba(146, 64, 14, 0.15);
 }
 
-.nexo-hot-flight-card__baggage {
+.flyvio-hot-flight-card__baggage {
   margin: 0 0 8px;
   font-size: 0.72rem;
-  color: var(--nexo-ink);
+  color: var(--flyvio-ink);
   font-weight: 600;
 }
 
-.nexo-hot-flight-card__detail-more {
+.flyvio-hot-flight-card__detail-more {
   margin: 0 0 8px;
   font-size: 0.72rem;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   line-height: 1.55;
   padding: 8px 10px;
-  background: rgba(30, 90, 142, 0.04);
-  border-radius: 8px;
+  background: rgba(13, 74, 122, 0.03);
+  border-radius: var(--flyvio-radius-sm);
 }
 
-.nexo-hot-flight-card__expand {
+.flyvio-hot-flight-card__expand {
   display: block;
   width: 100%;
   margin: 0;
@@ -777,17 +933,17 @@ textarea {
   background: none;
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--nexo-blue);
+  color: var(--flyvio-blue);
   cursor: pointer;
   text-align: center;
   font-family: inherit;
 }
 
-.nexo-hot-flight-card__expand:hover {
+.flyvio-hot-flight-card__expand:hover {
   text-decoration: underline;
 }
 
-/* —— Flyvio：首页智能栏位 —— */
+/* ===== Smart Modules ===== */
 .flyvio-smart-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -803,10 +959,10 @@ textarea {
 }
 
 .flyvio-smart-card {
-  background: var(--nexo-card);
-  border-radius: var(--nexo-radius);
-  box-shadow: var(--nexo-shadow);
-  border: 1px solid rgba(30, 90, 142, 0.1);
+  background: var(--flyvio-card);
+  border-radius: var(--flyvio-radius);
+  box-shadow: var(--flyvio-shadow);
+  border: 1px solid rgba(13, 74, 122, 0.08);
   padding: clamp(14px, 3vmin, 18px);
   min-width: 0;
 }
@@ -814,22 +970,33 @@ textarea {
 .flyvio-smart-card__h {
   margin: 0 0 8px;
   font-size: clamp(0.95rem, 2.4vmin, 1.05rem);
-  font-weight: 800;
-  color: var(--nexo-ink);
+  font-weight: 700;
+  color: var(--flyvio-ink);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .flyvio-smart-card__icon {
-  font-size: 1.1rem;
-  line-height: 1;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.flyvio-smart-card__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--flyvio-blue);
+  stroke-width: 1.8;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .flyvio-smart-card__d {
   margin: 0 0 10px;
   font-size: 0.82rem;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   line-height: 1.45;
 }
 
@@ -843,13 +1010,13 @@ textarea {
   margin: 10px 0 4px;
   font-size: 0.92rem;
   font-weight: 700;
-  color: var(--nexo-blue);
+  color: var(--flyvio-cyan);
 }
 
 .flyvio-smart-card__muted {
   margin: 0 0 8px;
   font-size: 0.78rem;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   line-height: 1.5;
 }
 
@@ -857,26 +1024,27 @@ textarea {
   width: 100%;
   margin-bottom: 4px;
   padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(30, 90, 142, 0.22);
+  border-radius: var(--flyvio-radius-sm);
+  border: 1px solid rgba(13, 74, 122, 0.18);
   background: #fff;
   font-size: 0.88rem;
   font-weight: 600;
-  color: var(--nexo-ink);
+  color: var(--flyvio-ink);
   cursor: pointer;
 }
 
 .flyvio-smart-select:focus {
-  outline: 2px solid var(--nexo-yellow);
-  border-color: var(--nexo-blue);
+  outline: 2px solid var(--flyvio-cyan);
+  border-color: var(--flyvio-blue);
 }
 
-/* 价格趋势：折线图 */
+/* ===== Trend Chart ===== */
 .flyvio-trend-chart {
-  border-radius: 12px;
+  position: relative;
+  border-radius: var(--flyvio-radius-sm);
   padding: 8px 8px 4px;
-  background: linear-gradient(180deg, rgba(30, 90, 142, 0.07) 0%, rgba(30, 90, 142, 0.02) 100%);
-  border: 1px solid rgba(30, 90, 142, 0.08);
+  background: linear-gradient(180deg, rgba(13, 74, 122, 0.04) 0%, rgba(13, 74, 122, 0.01) 100%);
+  border: 1px solid rgba(13, 74, 122, 0.06);
 }
 
 .flyvio-trend-chart__svg {
@@ -886,22 +1054,47 @@ textarea {
 }
 
 .flyvio-trend-chart__grid {
-  stroke: rgba(30, 90, 142, 0.12);
+  stroke: rgba(13, 74, 122, 0.1);
   stroke-width: 0.35;
   stroke-dasharray: 2 2;
 }
 
 .flyvio-trend-chart__line {
-  stroke: var(--nexo-blue);
-  stroke-width: 0.9;
+  stroke: var(--flyvio-cyan);
+  stroke-width: 1.2;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
+.flyvio-trend-tooltip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: var(--flyvio-ink);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+  margin-top: -4px;
+}
+
+.flyvio-trend-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--flyvio-ink);
+}
+
 .flyvio-trend-chart__dot {
   fill: #fff;
-  stroke: var(--nexo-blue);
+  stroke: var(--flyvio-cyan);
   stroke-width: 0.45;
   vector-effect: non-scaling-stroke;
 }
@@ -912,7 +1105,7 @@ textarea {
   padding: 2px 2px 0;
   font-size: 0.65rem;
   font-weight: 600;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
 }
 
 .flyvio-trend-chart--empty,
@@ -925,7 +1118,7 @@ textarea {
 
 .flyvio-trend-chart__empty {
   font-size: 0.8rem;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   font-weight: 600;
 }
 
@@ -940,7 +1133,7 @@ textarea {
   display: block;
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   margin-bottom: 4px;
 }
 
@@ -952,7 +1145,7 @@ textarea {
 }
 
 .flyvio-smart-arrow {
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -961,15 +1154,15 @@ textarea {
   flex: 1;
   min-width: 0;
   padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(30, 90, 142, 0.22);
+  border-radius: var(--flyvio-radius-sm);
+  border: 1px solid rgba(13, 74, 122, 0.18);
   background: #fff;
   font-size: 0.9rem;
 }
 
 .flyvio-smart-input:focus {
-  outline: 2px solid var(--nexo-yellow);
-  border-color: var(--nexo-blue);
+  outline: 2px solid var(--flyvio-cyan);
+  border-color: var(--flyvio-blue);
 }
 
 .flyvio-smart-btn {
@@ -978,22 +1171,22 @@ textarea {
   margin-top: 12px;
   padding: 12px 16px;
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--nexo-blue) 0%, var(--nexo-blue-soft) 100%);
+  border-radius: var(--flyvio-radius-sm);
+  background: linear-gradient(135deg, var(--flyvio-blue) 0%, var(--flyvio-cyan) 100%);
   color: #fff;
   font-weight: 700;
   font-size: 0.88rem;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(30, 90, 142, 0.28);
+  box-shadow: 0 2px 8px rgba(13, 74, 122, 0.2);
 }
 
 .flyvio-smart-btn--ghost {
-  background: rgba(30, 90, 142, 0.1);
-  color: var(--nexo-blue);
+  background: rgba(13, 74, 122, 0.06);
+  color: var(--flyvio-blue);
   box-shadow: none;
-  border: 1px solid rgba(30, 90, 142, 0.22);
+  border: 1px solid rgba(13, 74, 122, 0.15);
 }
 
 .flyvio-smart-chips {
@@ -1005,31 +1198,31 @@ textarea {
 .flyvio-chip {
   display: inline-flex;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 999px;
+  padding: 6px 10px;
+  border-radius: var(--flyvio-radius-sm);
   font-size: 0.78rem;
-  font-weight: 700;
-  background: rgba(30, 90, 142, 0.1);
-  color: var(--nexo-blue);
+  font-weight: 600;
+  background: rgba(13, 74, 122, 0.06);
+  color: var(--flyvio-blue);
   text-decoration: none;
-  border: 1px solid rgba(30, 90, 142, 0.18);
+  border: 1px solid rgba(13, 74, 122, 0.1);
 }
 
 .flyvio-chip:hover {
-  background: rgba(30, 90, 142, 0.16);
+  background: rgba(13, 74, 122, 0.1);
 }
 
 .flyvio-chip--primary {
-  background: linear-gradient(135deg, var(--nexo-yellow-soft) 0%, #ffd98a 100%);
-  color: #5c3d08;
-  border-color: rgba(212, 160, 40, 0.35);
+  background: var(--flyvio-cyan-soft);
+  color: #0e5e6f;
+  border-color: rgba(8, 145, 178, 0.15);
 }
 
 .flyvio-smart-bullets {
   margin: 0 0 12px;
   padding-left: 1.1rem;
   font-size: 0.8rem;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   line-height: 1.55;
 }
 
@@ -1037,11 +1230,11 @@ textarea {
   margin-top: 0;
 }
 
-/* —— Flyvio：智能助手浮层（位于底栏之上） —— */
+/* ===== AI Chat Dock ===== */
 .flyvio-chat {
   position: fixed;
   right: clamp(10px, 2.5vmin, 18px);
-  bottom: calc(clamp(56px, 11vmin, 72px) + var(--nexo-safe-bottom) + 8px);
+  bottom: calc(clamp(56px, 11vmin, 72px) + var(--flyvio-safe-bottom) + 8px);
   z-index: 55;
   display: flex;
   flex-direction: column-reverse;
@@ -1055,16 +1248,25 @@ textarea {
   pointer-events: auto;
 }
 
+/* PC: position chat dock without bottom bar offset */
+@media (min-width: 768px) {
+  .flyvio-chat {
+    bottom: 24px;
+    right: 24px;
+    width: min(calc(100vw - 48px), 24rem);
+  }
+}
+
 .flyvio-chat__fab {
-  padding: 12px 18px;
+  padding: 10px 16px;
   border: none;
   border-radius: 999px;
-  font-weight: 800;
-  font-size: 0.88rem;
+  font-weight: 700;
+  font-size: 0.85rem;
   cursor: pointer;
   color: #fff;
-  background: linear-gradient(135deg, var(--nexo-blue) 0%, #163d5c 100%);
-  box-shadow: 0 6px 22px rgba(30, 90, 142, 0.4);
+  background: linear-gradient(135deg, var(--flyvio-blue) 0%, var(--flyvio-cyan) 100%);
+  box-shadow: 0 4px 14px rgba(13, 74, 122, 0.3);
   font-family: inherit;
 }
 
@@ -1073,29 +1275,29 @@ textarea {
   max-height: min(52dvh, 420px);
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
+  border-radius: var(--flyvio-radius-lg);
   overflow: hidden;
   background: #fff;
-  border: 1px solid rgba(30, 90, 142, 0.15);
-  box-shadow: 0 12px 40px rgba(30, 90, 142, 0.2);
+  border: 1px solid rgba(13, 74, 122, 0.1);
+  box-shadow: 0 8px 32px rgba(13, 74, 122, 0.15);
 }
 
 .flyvio-chat__head {
   position: relative;
   padding: 12px 40px 10px 14px;
-  background: linear-gradient(135deg, #e8f4ff 0%, #d4e8f8 100%);
-  border-bottom: 1px solid rgba(30, 90, 142, 0.1);
+  background: linear-gradient(135deg, #edf5fc 0%, #dbe9f5 100%);
+  border-bottom: 1px solid rgba(13, 74, 122, 0.06);
 }
 
 .flyvio-chat__head strong {
   display: block;
   font-size: 0.95rem;
-  color: var(--nexo-ink);
+  color: var(--flyvio-ink);
 }
 
 .flyvio-chat__sub {
   font-size: 0.72rem;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
 }
 
 .flyvio-chat__close {
@@ -1105,12 +1307,12 @@ textarea {
   width: 32px;
   height: 32px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   background: rgba(255, 255, 255, 0.7);
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
-  color: var(--nexo-muted);
+  color: var(--flyvio-muted);
   font-family: inherit;
 }
 
@@ -1127,20 +1329,20 @@ textarea {
 .flyvio-chat__msg {
   max-width: 92%;
   padding: 10px 12px;
-  border-radius: 12px;
+  border-radius: var(--flyvio-radius);
   font-size: 0.82rem;
   line-height: 1.45;
 }
 
 .flyvio-chat__msg--assistant {
   align-self: flex-start;
-  background: rgba(30, 90, 142, 0.08);
-  color: var(--nexo-ink);
+  background: rgba(13, 74, 122, 0.06);
+  color: var(--flyvio-ink);
 }
 
 .flyvio-chat__msg--user {
   align-self: flex-end;
-  background: linear-gradient(135deg, var(--nexo-blue) 0%, var(--nexo-blue-soft) 100%);
+  background: linear-gradient(135deg, var(--flyvio-blue) 0%, var(--flyvio-cyan) 100%);
   color: #fff;
 }
 
@@ -1148,16 +1350,16 @@ textarea {
   display: flex;
   gap: 8px;
   padding: 10px;
-  border-top: 1px solid rgba(30, 90, 142, 0.08);
-  background: #fafcff;
+  border-top: 1px solid rgba(13, 74, 122, 0.06);
+  background: #fafcfe;
 }
 
 .flyvio-chat__input {
   flex: 1;
   min-width: 0;
   padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(30, 90, 142, 0.2);
+  border-radius: var(--flyvio-radius-sm);
+  border: 1px solid rgba(13, 74, 122, 0.15);
   font-size: 0.88rem;
 }
 
@@ -1165,11 +1367,57 @@ textarea {
   flex-shrink: 0;
   padding: 10px 14px;
   border: none;
-  border-radius: 10px;
-  background: var(--nexo-blue);
+  border-radius: var(--flyvio-radius-sm);
+  background: var(--flyvio-blue);
   color: #fff;
   font-weight: 700;
   font-size: 0.82rem;
   cursor: pointer;
   font-family: inherit;
+}
+
+/* ===== Home page: section separator ===== */
+.flyvio-section-sep {
+  width: 40px;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, var(--flyvio-blue), var(--flyvio-cyan));
+  margin: 24px auto 18px;
+  opacity: 0.4;
+}
+
+/* ===== PC: wider page sections ===== */
+@media (min-width: 768px) {
+  .flyvio-page {
+    padding-top: 4px;
+  }
+}
+
+/* ===== Unified Section Title ===== */
+.flyvio-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--flyvio-ink);
+  letter-spacing: -0.005em;
+}
+
+.flyvio-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: linear-gradient(180deg, var(--flyvio-blue), var(--flyvio-cyan));
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+  .flyvio-section-title {
+    font-size: 1.12rem;
+    margin-bottom: 14px;
+  }
 }

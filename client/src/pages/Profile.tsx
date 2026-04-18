@@ -37,16 +37,16 @@ export function Profile() {
   }
 
   return (
-    <div className="nexo-page">
-      <TopNav title="我的" right={<span className="nexo-muted" style={{ fontSize: '0.75rem' }}>客服</span>} />
+    <div className="flyvio-page">
+      <TopNav title="我的" right={<span className="flyvio-muted" style={{ fontSize: '0.75rem' }}>客服</span>} />
 
-      <div className="nexo-card" style={{ padding: 18, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 14 }}>
+      <div className="flyvio-card" style={{ padding: 18, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 14 }}>
         <div
           style={{
             width: 56,
             height: 56,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, var(--nexo-yellow-soft), var(--nexo-blue-soft))',
+            background: 'linear-gradient(135deg, var(--flyvio-cyan-soft), var(--flyvio-blue-soft))',
             flexShrink: 0,
           }}
         />
@@ -54,35 +54,35 @@ export function Profile() {
           {userId ? (
             <>
               <div style={{ fontWeight: 800 }}>{nickname || '用户'}</div>
-              <div className="nexo-muted" style={{ fontSize: '0.88rem' }}>
+              <div className="flyvio-muted" style={{ fontSize: '0.88rem' }}>
                 {phone}
               </div>
             </>
           ) : (
-            <div className="nexo-muted">登录后同步订单与监控</div>
+            <div className="flyvio-muted">登录后同步订单与监控</div>
           )}
         </div>
       </div>
 
       {!userId && (
-        <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
-          <div className="nexo-muted" style={{ marginBottom: 8, fontSize: '0.85rem' }}>
+        <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
+          <div className="flyvio-muted" style={{ marginBottom: 8, fontSize: '0.85rem' }}>
             使用手机号快速登录（演示）
           </div>
-          <input className="nexo-input" placeholder="手机号" value={p} onChange={(e) => setP(e.target.value)} />
-          <button type="button" className="nexo-btn-primary" style={{ marginTop: 12 }} disabled={busy} onClick={() => void onLogin()}>
+          <input className="flyvio-input" placeholder="手机号" value={p} onChange={(e) => setP(e.target.value)} />
+          <button type="button" className="flyvio-btn-primary" style={{ marginTop: 12 }} disabled={busy} onClick={() => void onLogin()}>
             {busy ? '…' : '登录 / 注册'}
           </button>
-          <div className="nexo-muted" style={{ fontSize: '0.78rem', marginTop: 10 }}>
+          <div className="flyvio-muted" style={{ fontSize: '0.78rem', marginTop: 10 }}>
             试用演示账号手机号：<strong>13800000000</strong>（含新客券）
           </div>
         </div>
       )}
 
       {userId && (
-        <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
+        <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
           <div style={{ fontWeight: 700, marginBottom: 8 }}>AI 个性化行程（演示）</div>
-          <button type="button" className="nexo-btn-secondary" style={{ width: '100%' }} disabled={busy} onClick={() => void runAi()}>
+          <button type="button" className="flyvio-btn-secondary" style={{ width: '100%' }} disabled={busy} onClick={() => void runAi()}>
             按预算生成推荐
           </button>
           {aiText && (
@@ -91,7 +91,7 @@ export function Profile() {
                 marginTop: 12,
                 whiteSpace: 'pre-wrap',
                 fontSize: '0.85rem',
-                color: 'var(--nexo-muted)',
+                color: 'var(--flyvio-muted)',
                 fontFamily: 'inherit',
               }}
             >
@@ -101,9 +101,9 @@ export function Profile() {
         </div>
       )}
 
-      <div className="nexo-card" style={{ padding: 8, marginBottom: 16 }}>
+      <div className="flyvio-card" style={{ padding: 8, marginBottom: 16 }}>
         {[
-          { t: '低价监控', to: '/me/monitors', sub: '7×24 目标价提醒' },
+          { t: '低价监控', to: '/me/monitors', sub: '7天×24小时目标价提醒' },
           { t: '常用乘客', to: '/me', sub: '演示入口' },
           { t: '我的收藏', to: '/', sub: '首页特价' },
           { t: '帮助与客服', to: '/me', sub: '即将上线' },
@@ -122,30 +122,30 @@ export function Profile() {
           >
             <div>
               <div style={{ fontWeight: 600 }}>{x.t}</div>
-              <div className="nexo-muted" style={{ fontSize: '0.8rem' }}>
+              <div className="flyvio-muted" style={{ fontSize: '0.8rem' }}>
                 {x.sub}
               </div>
             </div>
-            <span className="nexo-muted">›</span>
+            <span className="flyvio-muted">›</span>
           </Link>
         ))}
       </div>
 
-      <div className="nexo-card" style={{ padding: 8, marginBottom: 24 }}>
+      <div className="flyvio-card" style={{ padding: 8, marginBottom: 24 }}>
         {[
           { t: '账号安全', d: '手机号、密码（演示）' },
           { t: '关于 Flyvio', d: '特价机票发现平台' },
         ].map((x) => (
           <div key={x.t} style={{ padding: '14px 12px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
             <div style={{ fontWeight: 600 }}>{x.t}</div>
-            <div className="nexo-muted" style={{ fontSize: '0.8rem' }}>{x.d}</div>
+            <div className="flyvio-muted" style={{ fontSize: '0.8rem' }}>{x.d}</div>
           </div>
         ))}
         {userId && (
           <button
             type="button"
             onClick={() => logout()}
-            className="nexo-btn-secondary"
+            className="flyvio-btn-secondary"
             style={{ width: 'calc(100% - 24px)', margin: 12, borderColor: '#a32020', color: '#a32020' }}
           >
             退出登录

@@ -63,9 +63,9 @@ export function Monitors() {
 
   if (!userId) {
     return (
-      <div className="nexo-page">
+      <div className="flyvio-page">
         <TopNav title="低价监控" />
-        <div className="nexo-card" style={{ padding: 20 }}>
+        <div className="flyvio-card" style={{ padding: 20 }}>
           请先 <Link to="/me">登录</Link>
         </div>
       </div>
@@ -73,24 +73,24 @@ export function Monitors() {
   }
 
   return (
-    <div className="nexo-page">
+    <div className="flyvio-page">
       <TopNav title="低价监控" />
 
-      <div className="nexo-card" style={{ padding: 16, marginBottom: 16 }}>
+      <div className="flyvio-card" style={{ padding: 16, marginBottom: 16 }}>
         <h3 style={{ margin: '0 0 12px', fontSize: '1rem' }}>新建监控</h3>
-        {err && <div className="nexo-error">{err}</div>}
-        <input className="nexo-input" value={dep} onChange={(e) => setDep(e.target.value)} style={{ marginBottom: 8 }} placeholder="出发" />
-        <input className="nexo-input" value={arr} onChange={(e) => setArr(e.target.value)} style={{ marginBottom: 8 }} placeholder="到达" />
-        <input className="nexo-input" type="date" value={start} onChange={(e) => setStart(e.target.value)} style={{ marginBottom: 8 }} />
-        <input className="nexo-input" type="date" value={end} onChange={(e) => setEnd(e.target.value)} style={{ marginBottom: 8 }} />
+        {err && <div className="flyvio-error">{err}</div>}
+        <input className="flyvio-input" value={dep} onChange={(e) => setDep(e.target.value)} style={{ marginBottom: 8 }} placeholder="出发" />
+        <input className="flyvio-input" value={arr} onChange={(e) => setArr(e.target.value)} style={{ marginBottom: 8 }} placeholder="到达" />
+        <input className="flyvio-input" type="date" value={start} onChange={(e) => setStart(e.target.value)} style={{ marginBottom: 8 }} />
+        <input className="flyvio-input" type="date" value={end} onChange={(e) => setEnd(e.target.value)} style={{ marginBottom: 8 }} />
         <input
-          className="nexo-input"
+          className="flyvio-input"
           type="number"
           value={price}
           onChange={(e) => setPrice(Number(e.target.value))}
           placeholder="目标价"
         />
-        <button type="button" className="nexo-btn-primary" style={{ marginTop: 12 }} onClick={() => void add()}>
+        <button type="button" className="flyvio-btn-primary" style={{ marginTop: 12 }} onClick={() => void add()}>
           保存监控
         </button>
       </div>
@@ -98,22 +98,22 @@ export function Monitors() {
       <h3 style={{ fontSize: '1rem', marginBottom: 10 }}>我的任务</h3>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {list.map((m) => (
-          <div key={m.id} className="nexo-card" style={{ padding: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div key={m.id} className="flyvio-card" style={{ padding: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <div style={{ fontWeight: 700 }}>
                 {m.dep_city} → {m.arr_city}
               </div>
-              <div className="nexo-muted" style={{ fontSize: '0.85rem' }}>
+              <div className="flyvio-muted" style={{ fontSize: '0.85rem' }}>
                 {m.dep_date_start} ~ {m.dep_date_end} · 目标 ¥{m.target_price}
               </div>
             </div>
-            <button type="button" className="nexo-btn-secondary" style={{ padding: '8px 12px' }} onClick={() => void remove(m.id)}>
+            <button type="button" className="flyvio-btn-secondary" style={{ padding: '8px 12px' }} onClick={() => void remove(m.id)}>
               删除
             </button>
           </div>
         ))}
       </div>
-      {list.length === 0 && <div className="nexo-muted" style={{ marginTop: 12 }}>暂无监控任务</div>}
+      {list.length === 0 && <div className="flyvio-muted" style={{ marginTop: 12 }}>暂无监控任务</div>}
     </div>
   );
 }

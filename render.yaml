@@ -2,7 +2,7 @@
 # https://render.com/docs/blueprint-spec
 services:
   - type: web
-    name: nexo
+    name: flyvio
     runtime: docker
     plan: free
     healthCheckPath: /api/health

@@ -1,25 +1,19 @@
 import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 
-type Props = { title: string; right?: ReactNode; showSearch?: boolean };
+type Props = { title: string; right?: ReactNode };
 
-export function TopNav({ title, right, showSearch }: Props) {
+export function TopNav({ title, right }: Props) {
   return (
-    <header className="nexo-topnav">
-      <div className="nexo-topnav__side nexo-topnav__side--left" aria-hidden="true" />
-      <div className="nexo-topnav__brand">
-        <div className="nexo-topnav__brand-product">
-          <span className="nexo-topnav__brand-flyvio">Flyvio</span>
-          <span className="nexo-topnav__brand-tag"> — Fly easy, save more.</span>
+    <header className="flyvio-topnav">
+      <div className="flyvio-topnav__side flyvio-topnav__side--left" aria-hidden="true" />
+      <div className="flyvio-topnav__brand">
+        <div className="flyvio-topnav__brand-product">
+          <span className="flyvio-topnav__brand-flyvio">FLYVIO</span>
+          <span className="flyvio-topnav__brand-tag">— Fly easy, save more.</span>
         </div>
-        {title ? <div className="nexo-topnav__brand-page">{title}</div> : null}
+        {title ? <div className="flyvio-topnav__brand-page">{title}</div> : null}
       </div>
-      <div className="nexo-topnav__side nexo-topnav__side--right">
-        {showSearch && (
-          <Link to="/search" className="nexo-topnav__search">
-            搜索
-          </Link>
-        )}
+      <div className="flyvio-topnav__side flyvio-topnav__side--right">
         {right}
       </div>
     </header>

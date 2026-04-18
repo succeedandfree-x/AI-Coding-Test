@@ -53,16 +53,16 @@ export function Pay() {
 
   if (!userId) {
     return (
-      <div className="nexo-page">
+      <div className="flyvio-page">
         <TopNav title="收银台" />
-        <div className="nexo-error">请先登录</div>
+        <div className="flyvio-error">请先登录</div>
       </div>
     );
   }
 
   if (!order) {
     return (
-      <div className="nexo-page nexo-loading">
+      <div className="flyvio-page flyvio-loading">
         {err || '加载订单…'}
       </div>
     );
@@ -70,9 +70,9 @@ export function Pay() {
 
   if (order.status !== 'pending') {
     return (
-      <div className="nexo-page">
+      <div className="flyvio-page">
         <TopNav title="收银台" />
-        <div className="nexo-card" style={{ padding: 20 }}>
+        <div className="flyvio-card" style={{ padding: 20 }}>
           该订单无需支付或已处理。
         </div>
       </div>
@@ -82,15 +82,15 @@ export function Pay() {
   const first = order.flights[0];
 
   return (
-    <div className="nexo-page">
+    <div className="flyvio-page">
       <TopNav title="确认支付" />
 
-      {err && <div className="nexo-error">{err}</div>}
+      {err && <div className="flyvio-error">{err}</div>}
 
-      <div className="nexo-card" style={{ padding: 18, marginBottom: 16 }}>
+      <div className="flyvio-card" style={{ padding: 18, marginBottom: 16 }}>
         <div style={{ fontWeight: 800, marginBottom: 8 }}>订单摘要</div>
         {first && (
-          <div className="nexo-muted" style={{ fontSize: '0.9rem', lineHeight: 1.6 }}>
+          <div className="flyvio-muted" style={{ fontSize: '0.9rem', lineHeight: 1.6 }}>
             <div>
               {first.dep_city} → {first.arr_city} · {first.airline} {first.flight_no}
             </div>
@@ -99,34 +99,34 @@ export function Pay() {
             </div>
           </div>
         )}
-        <div style={{ marginTop: 12, fontSize: '1.4rem', fontWeight: 800, color: 'var(--nexo-blue)' }}>
+        <div style={{ marginTop: 12, fontSize: '1.4rem', fontWeight: 800, color: 'var(--flyvio-blue)' }}>
           ¥{order.total_amount}
         </div>
         {order.discount_amount > 0 && (
-          <div className="nexo-muted" style={{ fontSize: '0.85rem' }}>
+          <div className="flyvio-muted" style={{ fontSize: '0.85rem' }}>
             已优惠 ¥{order.discount_amount}
           </div>
         )}
       </div>
 
-      <div className="nexo-card" style={{ padding: 18, marginBottom: 16 }}>
+      <div className="flyvio-card" style={{ padding: 18, marginBottom: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
           <span style={{ fontWeight: 700 }}>支付剩余时间</span>
-          <span style={{ fontWeight: 800, color: 'var(--nexo-blue)' }}>{mmss}</span>
+          <span style={{ fontWeight: 800, color: 'var(--flyvio-blue)' }}>{mmss}</span>
         </div>
-        <div className="nexo-muted" style={{ fontSize: '0.82rem', lineHeight: 1.6 }}>
+        <div className="flyvio-muted" style={{ fontSize: '0.82rem', lineHeight: 1.6 }}>
           重要提示：部分特价舱位可能限制退改，请以航班详情页展示为准；行李额度以航司规则为准。
         </div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
-        <button type="button" className="nexo-btn-primary" style={{ background: '#07c160' }} onClick={() => void doPay('wechat')}>
+        <button type="button" className="flyvio-btn-primary" style={{ background: '#07c160' }} onClick={() => void doPay('wechat')}>
           微信支付
         </button>
-        <button type="button" className="nexo-btn-primary" style={{ background: '#1677ff' }} onClick={() => void doPay('alipay')}>
+        <button type="button" className="flyvio-btn-primary" style={{ background: '#1677ff' }} onClick={() => void doPay('alipay')}>
           支付宝
         </button>
-        <button type="button" className="nexo-btn-secondary" style={{ width: '100%' }} onClick={() => void doPay('unionpay')}>
+        <button type="button" className="flyvio-btn-secondary" style={{ width: '100%' }} onClick={() => void doPay('unionpay')}>
           云闪付
         </button>
       </div>

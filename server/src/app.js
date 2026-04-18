@@ -12,7 +12,7 @@ import { aiRouter } from './routes/ai.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.join(__dirname, '..', '..');
-const staticDir = process.env.NEXO_STATIC_DIR || path.join(repoRoot, 'client', 'dist');
+const staticDir = process.env.FLYVIO_STATIC_DIR || path.join(repoRoot, 'client', 'dist');
 const hasClient = existsSync(path.join(staticDir, 'index.html'));
 
 export const app = express();
@@ -21,7 +21,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
 app.get('/api/health', (_req, res) => {
-  res.json({ ok: true, service: 'nexo-server' });
+  res.json({ ok: true, service: 'flyvio-server' });
 });
 
 app.use('/api/flights', flightsRouter);
@@ -44,15 +44,15 @@ if (hasClient) {
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Nexo API</title>
+  <title>FLYVIO API</title>
   <style>
-    body{font-family:system-ui,sans-serif;max-width:40rem;margin:2rem auto;padding:0 1rem;line-height:1.6;color:#1a1f2e;background:#f7ecd8}
-    a{color:#1e5a8e}
-    code{background:#fff9ee;padding:.15rem .4rem;border-radius:6px}
+    body{font-family:system-ui,sans-serif;max-width:40rem;margin:2rem auto;padding:0 1rem;line-height:1.6;color:#0f1d2e;background:#f0f6fc}
+    a{color:#0d4a7a}
+    code{background:#edf5fc;padding:.15rem .4rem;border-radius:4px}
   </style>
 </head>
 <body>
-  <h1>Nexo 后端服务</h1>
+  <h1>FLYVIO 后端服务</h1>
   <p>本端口提供 <strong>REST API</strong>。未检测到构建后的前端（<code>client/dist</code>），请本地运行前端或使用一体化部署。</p>
   <ul>
     <li>前端（开发）：<a href="http://localhost:5173">http://localhost:5173</a></li>

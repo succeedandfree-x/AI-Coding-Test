@@ -1,8 +1,8 @@
-# Nexo 系统架构
+# FLYVIO 系统架构
 
 ## 总览
 
-采用经典 **前后端分离** 架构：浏览器中的单页应用（SPA）通过 HTTP JSON 调用 REST API；业务数据持久化在 **SQLite**（文件位于 `server/data/nexo.db`，测试时使用 `:memory:`）。
+采用经典 **前后端分离** 架构：浏览器中的单页应用（SPA）通过 HTTP JSON 调用 REST API；业务数据持久化在 **SQLite**（文件位于 `server/data/flyvio.db`，测试时使用 `:memory:`）。
 
 ```mermaid
 flowchart LR
