@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.npm-cache/
+server/data/*.db
+server/data/*.db-wal
+server/data/*.db-shm
+*.log
+.DS_Store
+_update-notifier-last-checked
